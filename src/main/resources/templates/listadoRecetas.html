@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Recetas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">Listado de Recetas Disponibles</h2>
+    <table class="table table-striped table-hover shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Tiempo (min)</th>
+                <th>Dificultad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="r : ${lista}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${r.nombre}"></td>
+                <td th:text="${r.categoria}"></td>
+                <td th:text="${r.tiempoPreparacion}"></td>
+                <td th:text="${r.dificultad}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/inicio" class="btn btn-outline-secondary">Volver al inicio</a>
+</body>
+</html>
