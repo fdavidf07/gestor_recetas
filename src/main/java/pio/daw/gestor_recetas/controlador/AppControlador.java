@@ -20,8 +20,9 @@ public class AppControlador {
 
     // 1. GET /inicio -> Página principal con tu nombre
     @GetMapping("/inicio")
-    public String inicio() {
-        return "inicio";
+    public String inicio(Model model) {
+        model.addAttribute("nombre", "Davicito"); 
+        return "inicio"; 
     }
 
     // 2. GET /listadoReceta -> Tabla con todas las recetas
