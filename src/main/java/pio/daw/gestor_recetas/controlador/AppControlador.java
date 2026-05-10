@@ -18,28 +18,29 @@ public class AppControlador {
     @Autowired
     private IngredienteRepository ingRepo;
 
-    // 1. GET /inicio -> Página principal con tu nombre
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/inicio";
+    }
+
     @GetMapping("/inicio")
     public String inicio(Model model) {
         model.addAttribute("nombre", "Davicito"); 
         return "inicio"; 
     }
 
-    // 2. GET /listadoReceta -> Tabla con todas las recetas
     @GetMapping("/listadoReceta")
     public String listarRecetas(Model model) {
         model.addAttribute("lista", recetaRepo.findAll());
         return "listadoRecetas";
     }
 
-    // 3. GET /listadoIngrediente -> Tabla con todos los ingredientes
     @GetMapping("/listadoIngrediente")
     public String listarIngredientes(Model model) {
         model.addAttribute("lista", ingRepo.findAll());
-        return "listadoIngredientes";
+        return "listadoIngredientes"; // Busca listadoIngredientes.html
     }
 
-    // 4. GET y POST /altaReceta -> Formulario de alta
     @GetMapping("/altaReceta")
     public String formularioReceta(Model model) {
         model.addAttribute("receta", new Receta());
@@ -52,11 +53,10 @@ public class AppControlador {
         return "redirect:/listadoReceta";
     }
 
-    // 5. GET y POST /altaIngrediente -> Formulario de alta
     @GetMapping("/altaIngrediente")
     public String formularioIngrediente(Model model) {
         model.addAttribute("ingrediente", new Ingrediente());
-        return "altaIngrediente";
+        return "altaIngrediente"; // Busca altaIngrediente.html
     }
 
     @PostMapping("/altaIngrediente")
